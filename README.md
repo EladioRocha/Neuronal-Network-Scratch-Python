@@ -1,34 +1,37 @@
-# Neuronal-Network-Scratch-Python
+# Neural Networks from Scratch — Python Exercises
 
-Ejercicios de redes neuronales desde cero en Python, basados en NNFS. Incluye capas densas, activaciones ReLU/Softmax, pérdidas y generación de datos de ejemplo.
+Study exercises following *Neural Networks from Scratch in Python* by **Harrison Kinsley and Daniel Kukieła**. The implementations are derived from the book's practice material; this repository is a learning companion, not an independently authored neural-network framework.
 
-## Estructura
+## Setup
 
-- [ActivationReLU.py](ActivationReLU.py)
-- [ActivationSoftmax.py](ActivationSoftmax.py)
-- [DenseLayer.py](DenseLayer.py)
-- [Loss.py](Loss.py)
-- [nnfs-practice.py](nnfs-practice.py)
-
-## Preparación y uso
-
-Requiere Python 3 con NumPy, matplotlib y nnfs. No hay un archivo de dependencias con versiones fijadas. En un entorno virtual de desarrollo:
+Use Python 3 and install the dependencies in your development environment:
 
 ```sh
 python -m pip install numpy matplotlib nnfs
+```
+
+No dependency versions are pinned. Plotting requires an environment with a working Matplotlib display backend.
+
+## Suggested reading order
+
+| File | Topics |
+| --- | --- |
+| [nnfs-practice.py](nnfs-practice.py) | Generate and plot spiral and vertical datasets. |
+| [ActivationReLU.py](ActivationReLU.py) | ReLU forward pass. |
+| [ActivationSoftmax.py](ActivationSoftmax.py) | Numerically stabilized softmax forward pass. |
+| [Loss.py](Loss.py) | Mean loss and categorical cross-entropy. |
+| [DenseLayer.py](DenseLayer.py) | Dense layers, forward passes, accuracy, and random weight-search examples. |
+
+Start with the dataset visualization:
+
+```sh
 python nnfs-practice.py
 ```
 
-El programa genera conjuntos de datos y abre gráficas con matplotlib. Los módulos de capas y activaciones se pueden estudiar por separado.
+Close the first plot to continue to the next. To run the network exercises, use `python DenseLayer.py`. That file runs examples at module scope, including a 10,000-iteration random weight search and extensive debug output; importing it also executes those examples.
 
-## Validación y estado
+## Scope and known limitations
 
-Esta guía se contrastó con el árbol de archivos y los manifiestos del repositorio. No se ha validado una ejecución completa contra servicios externos, bases de datos o hardware. Las versiones y los scripts mostrados describen el código actual; no implican que sus dependencias antiguas sigan siendo compatibles.
+The code explores forward propagation and random perturbations of weights, rather than a complete backpropagation training pipeline. In `Loss.py`, the one-hot-target branch repeats the sparse-target condition, so it does not handle two-dimensional target arrays as intended. Use the sparse-label examples when studying the current implementation.
 
-## Documentación previa
-
-Se conserva como referencia histórica, incluidas las imágenes y atribuciones originales. Los enlaces a demos y servicios no se han comprobado.
-
-# Neuronal-Network-Scratch-Python
-
-This is a study guide following the book ["Neuronal Network From Scratch in Python"](https://nnfs.io/) by Harrison Kinsley and Daniel Kukieta. The code is not mine, it´s created from the practices of the book
+There is no automated test suite or reproducible training benchmark. Documentation checks do not establish model accuracy. The book attribution above is preserved from the original README; the project is not presented as the official NNFS package.
